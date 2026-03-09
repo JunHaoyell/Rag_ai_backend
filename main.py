@@ -3,28 +3,24 @@ from pydantic import BaseModel
 from rag_pipeline import ask_rag
 from fastapi.middleware.cors import CORSMiddleware
 
-app = FastAPI()
+app = FastAPI(title="RAG AI Backend")
 
-# 允许前端访问
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 开发环境可以用 *
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
 class Question(BaseModel):
     question: str
 
-
 @app.post("/ask")
 async def ask(q: Question):
-
     answer = ask_rag(q.question)
+    return {"question": q.question, "answer": answer}
 
-    return {
-        "question": q.question,
-        "answer": answer
-    }
+@app.get("/")
+def root():
+    return {"message": "RAG AI Backend running ✅"}
