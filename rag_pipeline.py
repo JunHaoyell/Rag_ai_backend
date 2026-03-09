@@ -1,8 +1,10 @@
 import os
 from dotenv import load_dotenv
-from langchain.vectorstores import FAISS
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_huggingface import HuggingFaceEmbeddings
 from groq import Groq
+
+
 
 load_dotenv()
 
