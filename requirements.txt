@@ -1,8 +1,11 @@
 fastapi
 uvicorn
+python-dotenv
+groq
+
 langchain
+langchain-community
+langchain-huggingface
+
 faiss-cpu
 sentence-transformers
-groq
-pypdf
-python-dotenv
